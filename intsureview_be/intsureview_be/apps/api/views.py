@@ -31,4 +31,3 @@ class OatmilkResponseViewSet(viewsets.ModelViewSet):
 
     queryset = OatmilkResponse.objects.all()
     serializer_class = OatmilkResponseSerializer
-    permission_classes = [permissions.IsAuthenticated]

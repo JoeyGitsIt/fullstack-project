@@ -1,20 +1,46 @@
 // import Select from 'react-select';
 import { useForm, Controller } from 'react-hook-form';
 // import Input from '@material-ui/core/Input';
-import { Input, Select } from '@mui/material';
+import { Input, Select, Button } from '@mui/material';
+import '../css/Form.css';
 
 const Form = () => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      zipCode: '',
-      select: {},
-      dateTime: '',
+      datePurchased: '',
+      onSale: {},
       price: '',
       store: '',
-      oatMilkQuantity: '',
+      ounces: '',
+      zipCode: '',
     },
   });
-  const onSubmit = (data) => console.log(data);
+
+  // const formData = `{
+  //     "date_purchased": ${zipCode},
+  //     "on_sale": false,
+  //     "price": null,
+  //     "store_name": "",
+  //     "ounces_per_week": null,
+  //     "zip_code": null
+  // }`;
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    // try {
+    //   const response = await fetch('http://127.0.0.1:8000/oatmilk/', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(formData),
+    //   });
+    // } catch (e) {
+    //   console.error(e);
+    // }
+
+    return console.log('success!');
+  };
 
   let options1 = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -23,11 +49,11 @@ const Form = () => {
   ];
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      When was the last time you purchased oatmilk?
+    <form onSubmit={handleSubmit(onSubmit)} className="form">
+      When was the last time you purchased oat milk?
       <br />
       <Controller
-        name="dateTime"
+        name="datePurchased"
         control={control}
         render={({ field }) => <Input {...field} />}
       />
@@ -35,7 +61,7 @@ const Form = () => {
       Was it on sale?
       <br />
       <Controller
-        name="select"
+        name="onSale"
         control={control}
         render={({ ...field }) => <Select {...field} options={options1} />}
       />
@@ -48,7 +74,7 @@ const Form = () => {
         render={({ field }) => <Input {...field} />}
       />
       <br />
-      What store did you purchase it from?
+      What is the name of the store you purchased it from?
       <br />
       <Controller
         name="store"
@@ -60,12 +86,12 @@ const Form = () => {
       <br />
       {/* this can be a number counter going up and down */}
       <Controller
-        name="oatMilkQuantity"
+        name="ounces"
         control={control}
         render={({ field }) => <Input {...field} />}
       />
       <br />
-      Zip Code?
+      What is your zip code?
       <br />
       <Controller
         name="zipCode"
@@ -73,7 +99,9 @@ const Form = () => {
         render={({ field }) => <Input {...field} />}
       />
       <br />
-      <input type="submit" />
+      <Button variant="contained" type="submit">
+        Submit
+      </Button>
     </form>
   );
 };
