@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User, Group
+from intsureview_be.apps.api.models import OatmilkResponse
 from rest_framework import viewsets
 from rest_framework import permissions
-from intsureview_be.apps.api.serializers import UserSerializer, GroupSerializer
+from intsureview_be.apps.api.serializers import UserSerializer, GroupSerializer, OatmilkResponseSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -21,4 +22,13 @@ class GroupViewSet(viewsets.ModelViewSet):
 
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class OatmilkResponseViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows oatmilk responses to be viewed or edited.
+    """
+
+    queryset = OatmilkResponse.objects.all()
+    serializer_class = OatmilkResponseSerializer
     permission_classes = [permissions.IsAuthenticated]
