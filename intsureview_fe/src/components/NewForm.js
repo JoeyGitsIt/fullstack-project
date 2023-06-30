@@ -15,14 +15,14 @@ const NewForm = () => {
   const [datePurchased, setDatePurchased] = useState('');
   const [onSale, setOnSale] = useState(false);
   const [price, setPrice] = useState('');
-  const [ounces, setOunces] = useState('');
+  const [ounces, setOunces] = useState(undefined);
   const [zipCode, setZipCode] = useState('');
 
   const submitSurvey = async () => {
     const formData = `{
-        "date_purchased": ${datePurchased},
+        "date_purchased": "${datePurchased}",
         "on_sale": ${onSale},
-        "price": ${price},
+        "price": "${price}",
         "ounces_per_week": ${ounces},
         "zip_code": ${zipCode}
     }`;
@@ -45,7 +45,7 @@ const NewForm = () => {
         },
         body: formData,
       });
-      console.log(response);
+      await alert(response.status);
       // setData(response);
     } catch (e) {
       console.error(e);

@@ -7,9 +7,8 @@ class OatmilkResponse(models.Model):
     date_purchased = models.DateField()
     on_sale = models.BooleanField()
     price = models.DecimalField(max_digits=5, decimal_places=2)
-    store_name = models.CharField(max_length=100)
     ounces_per_week = models.IntegerField()
-    zip_code = models.IntegerField()
+    zip_code = models.CharField(max_length=5)
 
     def __str__(self):
         return self.uuid
