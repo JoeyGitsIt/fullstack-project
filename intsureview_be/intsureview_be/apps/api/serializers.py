@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from intsureview_be.apps.api.models import OatmilkResponse
+from intsureview_be.apps.api.models import SurveyResponse
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -13,7 +13,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ["url", "name"]
 
-class OatmilkResponseSerializer(serializers.ModelSerializer):
+class SurveyResponseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OatmilkResponse
+        model = SurveyResponse
         fields = ["uuid", "date_purchased", "on_sale", "price", "ounces_per_week", "zip_code"]

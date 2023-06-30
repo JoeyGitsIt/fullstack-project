@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User, Group
-from intsureview_be.apps.api.models import OatmilkResponse
+from intsureview_be.apps.api.models import SurveyResponse
 from rest_framework import viewsets
 from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from intsureview_be.apps.api.serializers import UserSerializer, GroupSerializer, OatmilkResponseSerializer
+from intsureview_be.apps.api.serializers import UserSerializer, GroupSerializer, SurveyResponseSerializer
 from django.http import JsonResponse
 
 
@@ -27,12 +27,12 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
     
-class OatmilkResponseViewSet(viewsets.ModelViewSet):
+class SurveyResponseViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows oatmilk responses to be viewed or edited.
+    API endpoint that allows Survey responses to be viewed or edited.
     """
-    queryset = OatmilkResponse.objects.all()
-    serializer_class = OatmilkResponseSerializer
+    queryset = SurveyResponse.objects.all()
+    serializer_class = SurveyResponseSerializer
     allowed_methods = ['GET', 'POST']
     
     def get(self, request, *args, **kwargs):

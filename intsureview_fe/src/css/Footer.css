@@ -1,7 +1,13 @@
 footer {
   background-color: #D2B48C;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   height: 4rem;
+  margin-top: auto;
+  margin-bottom: -15px;
+  padding-bottom: 15px;
+}
+
+p {
+  line-height: 75px;
+  justify-content: center;
+  align-items: center;
 }

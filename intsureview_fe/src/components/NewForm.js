@@ -38,14 +38,14 @@ const NewForm = () => {
 
     console.log(formData);
     try {
-      const response = await fetch('oatmilk/', {
+      const response = await fetch('survey/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: formData,
       });
-      await alert(response.status);
+      alert(response.status);
       // setData(response);
     } catch (e) {
       console.error(e);

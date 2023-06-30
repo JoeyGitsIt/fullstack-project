@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 
-class OatmilkResponse(models.Model):
+class SurveyResponse(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     date_submitted = models.DateField(auto_now_add=True)
     date_purchased = models.DateField()
