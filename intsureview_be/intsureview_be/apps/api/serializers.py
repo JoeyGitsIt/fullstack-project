@@ -13,7 +13,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ["url", "name"]
 
-class OatmilkResponseSerializer(serializers.HyperlinkedModelSerializer):
+class OatmilkResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model = OatmilkResponse
         fields = ["uuid", "date_purchased", "on_sale", "price", "store_name", "ounces_per_week", "zip_code"]

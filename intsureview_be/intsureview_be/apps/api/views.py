@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from intsureview_be.apps.api.models import OatmilkResponse
 from rest_framework import viewsets
-from rest_framework import permissions
+from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from intsureview_be.apps.api.serializers import UserSerializer, GroupSerializer, OatmilkResponseSerializer
@@ -26,25 +26,25 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
-
+    
 class OatmilkResponseViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows oatmilk responses to be viewed or edited.
     """
-
     queryset = OatmilkResponse.objects.all()
     serializer_class = OatmilkResponseSerializer
-
+    allowed_methods = ['GET', 'POST']
     
-# class OatmilkResponseView(APIView):
-#     """
-#     API endpoint that allows oatmilk responses to be viewed or edited.
-#     """
-#     def post(self, request, format=None):
-#         serializer = MyDataSerializer(data=request.data)
-#         if serializer.is_valid():
-#             # Process the valid data here
-#             # For example, you can save it to the database
-#             my_data = serializer.save()
-#             return Response({'message': 'Data created successfully'}, status=201)
-#         return Response(serializer.errors, status=400)
+    def get(self, request, *args, **kwargs):
+        # Custom GET logic
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data, status=200)
+    
+    def post(self, request, *args, **kwargs):
+        if serializer.is_valid():
+            instance = self.get_object()
+            serializer = self.get_serializer(instance, data=request.data)
+            my_data = serializer.save()
+            return Response({'message': 'Data created successfully'}, status=201)
+        return Response(serializer.errors, status=400)
