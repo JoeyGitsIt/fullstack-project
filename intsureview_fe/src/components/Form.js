@@ -13,7 +13,7 @@ const Form = () => {
   const [datePurchased, setDatePurchased] = useState('');
   const [onSale, setOnSale] = useState(false);
   const [price, setPrice] = useState('');
-  const [ounces, setOunces] = useState(undefined);
+  const [ounces, setOunces] = useState('');
   const [zipCode, setZipCode] = useState('');
 
   const submitSurvey = async () => {
