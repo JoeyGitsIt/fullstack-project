@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import '../css/Form.css';
 
+// I would have liked to use react hook form but was not familiar enough to get it nice enough for my submission, so I took a simpler approach
 const Form = () => {
   const [datePurchased, setDatePurchased] = useState('');
   const [onSale, setOnSale] = useState(false);

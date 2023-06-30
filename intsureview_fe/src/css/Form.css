@@ -10,6 +10,8 @@ form {
   display: block;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 18px !important;
+  color: black !important
 }
 
 .text-field {

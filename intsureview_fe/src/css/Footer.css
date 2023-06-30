@@ -2,12 +2,13 @@ footer {
   background-color: #D2B48C;
   height: 7vh;
   margin-top: auto;
-  margin-bottom: -20px;
-  padding-bottom: 20px;
+  margin-bottom: -15px;
+  padding-bottom: 15px;
 }
 
 p {
   line-height: 75px;
+  font-size: 20px;
   justify-content: center;
   align-items: center;
 }
