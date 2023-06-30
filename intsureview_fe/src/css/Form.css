@@ -1,8 +1,28 @@
-/* .form {
+/* form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
   background-color: #D2B48C;
 } */
+
+.form-label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.text-field {
+  display: block;
+  width: 20%;
+  margin-bottom: 100px;
+}
+
+.select {
+  display: block;
+  width: 20%;
+}
+
+div {
+  margin-bottom: 15px;
+}

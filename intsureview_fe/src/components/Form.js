@@ -2,10 +2,11 @@
 import { useForm, Controller } from 'react-hook-form';
 // import Input from '@material-ui/core/Input';
 import { Input, Select, Button } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../css/Form.css';
 
 const Form = () => {
+  const [data, setData] = useState();
   const [onSale, setOnSale] = useState(null);
   const { control, handleSubmit, field } = useForm({
     defaultValues: {
@@ -46,11 +47,10 @@ const Form = () => {
         },
         body: formData,
       });
+      // setData(response);
     } catch (e) {
       console.error(e);
     }
-
-    return console.log('success!');
   };
 
   let options1 = [
@@ -118,6 +118,11 @@ const Form = () => {
       <Button variant="contained" type="submit">
         Submit
       </Button>
+      {/* {data ? (
+        <div>Thank you for your entry!</div>
+      ) : (
+        <div>Something went wrong!</div>
+      )} */}
     </form>
   );
 };

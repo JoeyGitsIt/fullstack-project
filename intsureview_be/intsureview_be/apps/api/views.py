@@ -2,7 +2,10 @@ from django.contrib.auth.models import User, Group
 from intsureview_be.apps.api.models import OatmilkResponse
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from intsureview_be.apps.api.serializers import UserSerializer, GroupSerializer, OatmilkResponseSerializer
+from django.http import JsonResponse
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -31,3 +34,17 @@ class OatmilkResponseViewSet(viewsets.ModelViewSet):
 
     queryset = OatmilkResponse.objects.all()
     serializer_class = OatmilkResponseSerializer
+
+    
+# class OatmilkResponseView(APIView):
+#     """
+#     API endpoint that allows oatmilk responses to be viewed or edited.
+#     """
+#     def post(self, request, format=None):
+#         serializer = MyDataSerializer(data=request.data)
+#         if serializer.is_valid():
+#             # Process the valid data here
+#             # For example, you can save it to the database
+#             my_data = serializer.save()
+#             return Response({'message': 'Data created successfully'}, status=201)
+#         return Response(serializer.errors, status=400)
