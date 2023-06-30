@@ -38,12 +38,14 @@ const Form = () => {
         },
         body: formData,
       });
+      // backend response handling
       alert(response.statusText);
     } catch (e) {
       console.error(e);
     }
   };
 
+  // validation
   const isZipCodeValid = (zipCode) => {
     if (zipCode.length === 5 && zipCode.match(/^[0-9]+$/)) {
       return true;
