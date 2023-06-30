@@ -2,13 +2,15 @@
 import { useForm, Controller } from 'react-hook-form';
 // import Input from '@material-ui/core/Input';
 import { Input, Select, Button } from '@mui/material';
+import { useState } from 'react';
 import '../css/Form.css';
 
 const Form = () => {
-  const { control, handleSubmit } = useForm({
+  const [onSale, setOnSale] = useState(null);
+  const { control, handleSubmit, field } = useForm({
     defaultValues: {
       datePurchased: '',
-      onSale: {},
+      onSale: '',
       price: '',
       store: '',
       ounces: '',
@@ -16,36 +18,44 @@ const Form = () => {
     },
   });
 
-  // const formData = `{
-  //     "date_purchased": ${zipCode},
-  //     "on_sale": false,
-  //     "price": null,
-  //     "store_name": "",
-  //     "ounces_per_week": null,
-  //     "zip_code": null
-  // }`;
-
   const onSubmit = async (data) => {
-    console.log(data);
-    // try {
-    //   const response = await fetch('http://127.0.0.1:8000/oatmilk/', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
-    // } catch (e) {
-    //   console.error(e);
-    // }
+    //   const formData = `{
+    //     "date_purchased": ${data.datePurchased},
+    //     "on_sale": ${data.onSale},
+    //     "price": ${data.price},
+    //     "store_name": ${data.store},
+    //     "ounces_per_week": ${data.ounces},
+    //     "zip_code": ${data.zipCode}
+    // }`;
+
+    const formData = `{
+    "date_purchased": "2023-06-23",
+    "on_sale": false,
+    "price": "${data.price}",
+    "store_name": "${data.store}",
+    "ounces_per_week": ${data.ounces},
+    "zip_code": ${data.zipCode}
+    }`;
+
+    console.log(formData);
+    try {
+      const response = await fetch('oatmilk/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: formData,
+      });
+    } catch (e) {
+      console.error(e);
+    }
 
     return console.log('success!');
   };
 
   let options1 = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
+    { value: 'false', label: 'no' },
+    { value: 'true', label: 'yes' },
   ];
 
   return (
@@ -55,16 +65,22 @@ const Form = () => {
       <Controller
         name="datePurchased"
         control={control}
-        render={({ field }) => <Input {...field} />}
+        render={({ field }) => <Input label="YYYY-DD-MM" {...field} />}
       />
       <br />
       Was it on sale?
       <br />
-      <Controller
+      {/* <Controller
         name="onSale"
         control={control}
-        render={({ ...field }) => <Select {...field} options={options1} />}
-      />
+        render={({ ...field }) => (
+          <Select
+            {...field}
+            options={options1}
+            value={options1.find((e) => e.value === onSale)}
+          />
+        )}
+      /> */}
       <br />
       How much did it cost?
       <br />
